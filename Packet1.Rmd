@@ -1,0 +1,139 @@
+---
+title: "Packet 1 - Introduction to Data and Visualization"
+knit: (function(input_file, encoding) {
+  out_dir <- 'docs';
+  rmarkdown::render(input_file,
+ encoding=encoding,
+ output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
+author: "Todd CadwalladerOlsker"
+date: "*Last updated:* `r Sys.Date()`"
+output:
+  rmdformats::downcute:
+    downcute_theme: "chaos"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rmdformats)
+library(openintro)
+library(tidyverse)
+```
+
+## Getting Started with R and RStudio
+
+In this class, we'll be spending a lot of time playing around with data. Today, we'll start by looking at some data and seeing what we can do with it. To begin, let's create a pretty picture. Type the following code into the 'console' window of RStudio:
+
+```{r load_packages, eval=FALSE}
+install.packages("openintro")
+install.packages("tidyverse")
+library(openintro)
+library(tidyverse)
+```
+
+This code installs and loads two packages: The first is `openintro`, a package containing data sets used in the OpenIntro textbooks. The second is `tidyverse`, a package of useful functions that we will be making quite a bit of use of. You only need to `install.packages()` once for each package, but you will need to use the `library()` commands every time you start a new R session.
+
+With that out of the way, let's look at some data. Try this:
+
+```{r first_look_county, eval=FALSE}
+View(county)
+```
+
+There are lots of ways to get a summary, or at least a small glimpse at what your data looks like. Try typing any or all of the following functions into R:
+
+```{r second_look_county, eval=FALSE}
+dim(county)
+str(county)
+summary(county)
+colnames(county)
+head(county)
+tail(county)
+# and definitely look at...
+help(county)
+```
+
+The `summary()` function looks useful, but maybe we are just interested in a particular variable. We can just looks at a single column using the dollar sign `$` operation:
+
+```{r third_look_county, eval=FALSE}
+summary(county$pop2017)
+summary(county$state)
+summary(county$median_edu)
+```
+
+Let's draw a picture. First, a scatterplot:
+
+```{r scatterplot}
+ggplot(data = county) + 
+  geom_point(mapping = aes(x = multi_unit, y = homeownership)) +
+  labs(subtitle = "Percentage of units in multi-unit structures vs. Homeownership",
+       y = "Homeownership",
+       x = "Percentage of units in multi-unit structures",
+       title = "My First Scatterplot",
+       caption = "Source: county dataset"
+       )
+```
+
+What's that data point way off to the right? Which county has nearly 100% of its housing units in multi-unit structures?
+
+```{r filter, eval=FALSE}
+filter(county,multi_unit>95)
+```
+
+We could also arrange our data by the `multi_unit` variable in descending order:
+
+```{r arrange, eval=FALSE}
+arrange(county,desc(multi_unit))
+```
+
+Another useful way to think about R functions is to utilise the 'pipe operator', `%>%`. This takes a thing, and allows you to pipe it into the first argument of a function. For example, try:
+
+```{r arrange_2, eval=FALSE}
+county %>% arrange(desc(multi_unit))
+```
+
+This should give you the same output as above. This can be really useful if we want to chain a bunch of ideas together:
+
+```{r pipe_ex, eval=FALSE}
+county_ca <- county %>% 
+  filter(state == "California") %>% 
+  arrange(desc(pop2017))
+```
+
+In the above code, we created a new data frame, `county_ca`, to store our modified data frame. Try `View(county_ca)` before going any further.
+
+Another useful function is `mutate`. This allows us to create new variables in our data frame based on the data. You may have noticed when you looked at `help(county)` that the variable `pop_change` denotes the population change from 2010 to 2017. What if we want to know the population change from 2000 to 2017? Try this:
+
+```{r mutate, eval=FALSE}
+county_alt <- county %>% 
+  mutate(pop_change_2000 = (pop2017 - pop2000) / pop2000 * 100)
+```
+
+`View(county_alt)` to see the results!
+
+We can plot a scatterplot for our modified data. Check out <https://r4ds.had.co.nz/data-visualisation.html> for lots of ideas for different plots we can make with `ggplot()`. For now, try typing in the code below, and as you go, try to guess what each function in the plot does:
+
+```{r scatterplot2, eval=FALSE}
+ggplot(data = county_alt) + 
+  scale_color_brewer(palette="Set1") +
+  geom_point(mapping = aes(x = poverty, y = pop_change_2000, color=metro)) +
+  geom_smooth(mapping = aes(x = poverty, y = pop_change_2000), color="forestgreen") +
+  labs(subtitle = "Poverty vs Population Change from 2000 to 2017",
+       y = "Population Change from 2000 to 2017",
+       x = "Poverty in 2017",
+       title = "My second Scatterplot",
+       caption = "Source: county dataset"
+  )
+```
+
+## To turn in for this packet:
+
+Choose a different data set (not 'county' or any of the variants of 'county', and different from any of your classmates) from one of the openintro or tidyverse packages. You can see a list of datasets using the command `data()`. Then, create plots comparing two variables with the following characteristics:
+
+1. A basic scatterplot showing a relationship between two numerical variables.
+    a. The same basic scatterplot showing a relationship between two numerical variables with a color for a categorical variable
+    a. The same scatterplot as above, with a smooth line
+1. A bar chart showing the count for the members of a categorical variable.
+1. A dot-and-line chart showing the maximum, minimum, and median of a numerical variable for the members of a categorical variable.
+
+You may need to use `filter()` or `mutate()` to create variables or narrow down your data set. 
+
+If you haven't done so yet, you should complete the R and RStudio tutorial at <https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/> and follow all steps through step 15. This will give you a good grounding in R and RStudio.
