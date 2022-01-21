@@ -136,4 +136,4 @@ Choose a different data set (not 'county' or any of the variants of 'county', an
 
 You may need to use `filter()` or `mutate()` to create variables or narrow down your data set. 
 
-If you haven't done so yet, you should complete the R and RStudio tutorial at <https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/> and follow all steps through step 15. This will give you a good grounding in R and RStudio.
+* If you haven't done so yet, you should complete the R and RStudio tutorial at <https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/> and follow all steps through step 15. This will give you a good grounding in R and RStudio.

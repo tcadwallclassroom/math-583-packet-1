@@ -34,13 +34,15 @@ county %>% arrange(desc(multi_unit))
 county_alt <- county %>% 
   mutate(pop_change_2000 = (pop2017 - pop2000) / pop2000 * 100)
 
+
 ggplot(data = county_alt) + 
-  scale_color_brewer(palette="Set1") +
-  geom_point(mapping = aes(x = poverty, y = pop_change_2000, color=metro)) +
-  geom_smooth(mapping = aes(x = poverty, y = pop_change_2000), color="forestgreen") +
-  labs(subtitle = "Poverty vs Population Change from 2000 to 2017",
+    scale_color_brewer(palette="Dark2") +
+  #  scale_color_manual(values=c("red", "blue")) +
+  geom_point(mapping = aes(x = median_hh_income, y = pop_change_2000, color=metro)) +
+  geom_smooth(mapping = aes(x = median_hh_income, y = pop_change_2000), color="forestgreen") +
+  labs(subtitle = "Median Income vs Population Change from 2000 to 2017",
        y = "Population Change from 2000 to 2017",
-       x = "Poverty in 2017",
+       x = "Median Income in 2017",
        title = "My second Scatterplot",
        caption = "Source: county dataset"
   )
