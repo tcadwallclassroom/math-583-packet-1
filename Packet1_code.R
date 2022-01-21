@@ -46,4 +46,7 @@ ggplot(data = county_alt) +
        title = "My second Scatterplot",
        caption = "Source: county dataset"
   )
-  
+
+county_alt %>% na.omit() %>%
+  ggplot() +
+  geom_boxplot(mapping = aes(x = pop_change_2000, y = metro))
