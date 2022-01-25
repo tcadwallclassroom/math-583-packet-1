@@ -13,13 +13,17 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
 library(rmdformats)
 library(openintro)
 library(tidyverse)
 ```
 
-## Getting Started with R and RStudio
+## Part 1: Complete the R/RStudio Tutorial
+
+If you haven't done so yet, you should complete the R and RStudio tutorial at <https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/> and follow all steps through step 15. This will give you a good grounding in R and RStudio.
+
+## Part 2: Play around with data visualization.
 
 In this class, we'll be spending a lot of time playing around with data. Today, we'll start by looking at some data and seeing what we can do with it. To begin, let's create a pretty picture. Type the following code into the 'console' window of RStudio:
 
@@ -51,7 +55,7 @@ tail(county)
 help(county)
 ```
 
-The `summary()` function looks useful, but maybe we are just interested in a particular variable. We can just looks at a single column using the dollar sign `$` operation:
+The `summary()` function looks useful, but maybe we are just interested in a particular variable. We can look at a single variable using the dollar sign `$` operation:
 
 ```{r third_look_county, eval=FALSE}
 summary(county$pop2017)
@@ -124,16 +128,23 @@ ggplot(data = county_alt) +
   )
 ```
 
+## Part 3: Learn the basics of R Markdown
+
+In RStudio, install the R Markdown package: `install.packages("rmarkdown")` You may wish to read through the tutorial at <https://www.dataquest.io/blog/r-markdown-guide-cheatsheet/>, but we'll be doing things a little bit differently. 
+
+Next, in RStudio, click on File > New File > R Markdown. In the popup that appears, enter Packet 1 as the title, your name as the author, and choose PDF for the output type. Then click OK. What will appear is a template that shows off some of the features of R Markdown. Click the **Knit** button too create a PDF from this template. Notice how the R Markdown commands create output in the PDF file.
+
 ## To turn in for this packet:
 
-Choose a different data set (not 'county' or any of the variants of 'county', and different from any of your classmates) from one of the openintro or tidyverse packages. You can see a list of datasets using the command `data()`. Then, create plots comparing two variables with the following characteristics:
+Choose a different data set (not 'county' or any of the variants of 'county', and different from any of your classmates) from one of the openintro or tidyverse packages. You can see a list of datasets using the command `data()`. Be sure to use the `help()` command to get more information on your data set; you will need at least 2 numerical and one categorical variable in your data set, and ideally, at least 50 rows (data points.) 
+
+Then, create plots comparing two variables with the following characteristics:
 
 1. A basic scatterplot showing a relationship between two numerical variables.
     a. The same basic scatterplot showing a relationship between two numerical variables with a color for a categorical variable
     a. The same scatterplot as above, with a smooth line
 1. A bar chart showing the count for the members of a categorical variable.
-1. A dot-and-line chart showing the maximum, minimum, and median of a numerical variable for the members of a categorical variable.
+1. A dot-and-line chart showing the maximum, minimum, and median of a numerical variable, separated into groups using a categorical variable.
 
-You may need to use `filter()` or `mutate()` to create variables or narrow down your data set. 
+You may need to use `filter()`, `mutate()`, or `na.omit()` to create variables or narrow down your data set. 
 
-* If you haven't done so yet, you should complete the R and RStudio tutorial at <https://www.dataquest.io/blog/tutorial-getting-started-with-r-and-rstudio/> and follow all steps through step 15. This will give you a good grounding in R and RStudio.
