@@ -50,3 +50,11 @@ ggplot(data = county_alt) +
 county_alt %>% na.omit() %>%
   ggplot() +
   geom_boxplot(mapping = aes(x = pop_change_2000, y = metro))
+
+world_coordinates <- map_data("world")
+climate70 %>% ggplot(aes(x = longitude, y = latitude)) +
+  geom_map(
+    data = world_coordinates, map = world_coordinates,
+    aes(long, lat, map_id = region)
+  ) +
+  geom_point(color="red")

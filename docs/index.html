@@ -216,18 +216,55 @@ summary(county$median_edu)</code></pre>
 </div>
 <div id="to-turn-in-for-this-packet" class="section level2">
 <h2>To turn in for this packet:</h2>
-<p>Choose a different data set (not ‘county’ or any of the variants of ‘county’, and different from any of your classmates) from one of the openintro or tidyverse packages. You can see a list of datasets using the command <code>data()</code>. Be sure to use the <code>help()</code> command to get more information on your data set; you will need at least 2 numerical and one categorical variable in your data set, and ideally, at least 50 rows (data points.)</p>
-<p>Then, create plots comparing two variables with the following characteristics:</p>
+<p>For this assignment packet, you will create a report in .pdf format with RMarkdown. Your file will be turned in through the assignment page in Canvas.</p>
+<p>Your report should include your reflections on the following two items:</p>
 <ol style="list-style-type: decimal">
-<li>A basic scatterplot showing a relationship between two numerical variables.
-<ol style="list-style-type: lower-alpha">
-<li>The same basic scatterplot showing a relationship between two numerical variables with a color for a categorical variable</li>
-<li>The same scatterplot as above, with a smooth line</li>
-</ol></li>
-<li>A bar chart showing the count for the members of a categorical variable.</li>
-<li>A dot-and-line chart showing the maximum, minimum, and median of a numerical variable, separated into groups using a categorical variable.</li>
+<li>You will create a few visualizations of a dataset, and comment on what you see.</li>
+<li>You will read a short article on the relation of mathematics to politics, justice, and identity, and write a short reflection on it.</li>
 </ol>
-<p>You may need to use <code>filter()</code>, <code>mutate()</code>, or <code>na.omit()</code> to create variables or narrow down your data set.</p>
+<div id="for-the-first-task" class="section level3">
+<h3>For the first task</h3>
+<p>Run <code>help(climate70)</code> to learn about the <code>climate70</code> data set included in <code>openintro</code>. Then run <code>glimpse(climate70)</code> to see a small section of what the data looks like.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>First, create a scatterplot showing the latitude of each weather station on the y-axis, and longitude on the x-axis. How can you interpret this plot?</p></li>
+<li><p>Run the following R code (as a reminder, you only need to install packages once, but you will need to re-run the <code>library</code> commands each time you restart R:</p></li>
+</ol>
+<pre class="r"><code>install.packages(&quot;maps&quot;)
+library(maps)
+world_coordinates &lt;- map_data(&quot;world&quot;)
+climate70 %&gt;% ggplot(aes(x = longitude, y = latitude)) +
+  geom_map(
+    data = world_coordinates, map = world_coordinates,
+    aes(long, lat, map_id = region)
+  ) +
+  geom_point(color=&quot;red&quot;)</code></pre>
+<p>What does this code appear to tell you about the data set? Include an R chunk containing the above code in your file, and tell me what you see.</p>
+<ol start="3" style="list-style-type: lower-alpha">
+<li>Create a scatterplot with the following attributes:</li>
+</ol>
+<ul>
+<li>Filter your data so it only includes weather stations in North America, and</li>
+<li>plot latitude on the x-axis, and number of days above 70 on the y axis.</li>
+</ul>
+<p>Do these two variables appear to be related? Again, include an R chunk that displays your code and the resulting scatterplot.</p>
+<ol start="4" style="list-style-type: lower-alpha">
+<li><p>Make a second scatterplot, again filtering so only stations in North America appear, but this time compare longitude (on the x-axis) to number of days above 70 (on the y-axis). Do these variables appear to be related?</p></li>
+<li><p>Finally, use <code>mutate</code> to create a variable called <code>diff_70</code> for the difference between the number of days above 70 in 1948 and the number of days above 70 in 2018. Store this data frame as <code>climate70_diff</code>. Then, create a histogram for the differences using a command like</p></li>
+</ol>
+<pre class="r"><code>climate70_diff %&gt;% ggplot() +
+  geom_histogram(aes(x = diff_70),binwidth=5,color=&quot;black&quot;,fill=&quot;forestgreen&quot;)</code></pre>
+<p>Feel free to play around with different bin widths, colors, etc. Throughout all of this, make sure your R code appears along with your plots in your .pdf document.</p>
+</div>
+<div id="for-the-second-task" class="section level3">
+<h3>For the second task</h3>
+<p>Read the post, “Supremum/Supremacy,” by Brian Katz, at the (now discontinued) AMS Inclusion/Exclusion blog: <a href="https://blogs.ams.org/inclusionexclusion/2017/05/04/supremumsupremacy/" class="uri">https://blogs.ams.org/inclusionexclusion/2017/05/04/supremumsupremacy/</a></p>
+<p>After reading it, write a short (2-3 paragraphs) reflection on this article. As part of your reflection, you may with to consider questions like the following: (this is not a checklist of questions to answer, only some ideas to get you thinking.)</p>
+<ul>
+<li>Do you agree with the author’s claim that mathematics is political?</li>
+<li>How has your own learning or teaching been affected by issues of identity?</li>
+<li>How do you think of yourself as a mathematical professional, and does this article challenge that image at all?</li>
+</ul>
+</div>
 </div>
 </div>
 
