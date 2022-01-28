@@ -137,7 +137,7 @@
       <p class="authors">
            <span class="glyphicon glyphicon-user"></span> Todd CadwalladerOlsker
       </p>
-         <p class="date"><span class="glyphicon glyphicon-calendar"></span> <em>Last updated:</em> 2022-01-25</p>
+         <p class="date"><span class="glyphicon glyphicon-calendar"></span> <em>Last updated:</em> 2022-01-28</p>
            
 
    
@@ -211,8 +211,15 @@ summary(county$median_edu)</code></pre>
 </div>
 <div id="part-3-learn-the-basics-of-r-markdown" class="section level2">
 <h2>Part 3: Learn the basics of R Markdown</h2>
-<p>In RStudio, install the R Markdown package: <code>install.packages(&quot;rmarkdown&quot;)</code> You may wish to read through the tutorial at <a href="https://www.dataquest.io/blog/r-markdown-guide-cheatsheet/" class="uri">https://www.dataquest.io/blog/r-markdown-guide-cheatsheet/</a>, but we’ll be doing things a little bit differently.</p>
-<p>Next, in RStudio, click on File &gt; New File &gt; R Markdown. In the popup that appears, enter Packet 1 as the title, your name as the author, and choose PDF for the output type. Then click OK. What will appear is a template that shows off some of the features of R Markdown. Click the <strong>Knit</strong> button too create a PDF from this template. Notice how the R Markdown commands create output in the PDF file.</p>
+<p>In RStudio, install the R Markdown package: <code>install.packages(&quot;rmarkdown&quot;)</code> You may wish to read through the tutorial at <a href="https://www.dataquest.io/blog/r-markdown-guide-cheatsheet/" class="uri">https://www.dataquest.io/blog/r-markdown-guide-cheatsheet/</a>, but we’ll be doing things a little bit differently, as we want to produce .pdf documents.</p>
+<ol style="list-style-type: decimal">
+<li>Install <code>rmarkdown</code> with <code>install.packages(&quot;rmarkdown&quot;)</code>. This may already be installed, but there’s no harm in running the command if it is installed.</li>
+<li>You don’t need to <code>library(rmarkdown)</code>, that will happen automatically when we compile (“knit” in R lingo) the file.</li>
+<li>Install the <code>tinytex</code> package with <code>install.packages(&quot;tinytex&quot;)</code>.</li>
+<li><code>library(tinytex)</code>. This package creates a function to install a minimal LaTeX setup that R can interact with, which you’ll run in the next step.</li>
+<li>Now, run <code>install_tinytex()</code>. This will finish the installation of the LaTeX setup.</li>
+<li>Finally, let’s test everything out: in RStudio, click on File &gt; New File &gt; R Markdown. In the popup that appears, enter Packet 1 as the title, your name as the author, and choose PDF for the output type. Then click OK. What will appear is a template that shows off some of the features of R Markdown. Click the <strong>Knit</strong> button too create a PDF from this template. Notice how the R Markdown commands create output in the PDF file.</li>
+</ol>
 </div>
 <div id="to-turn-in-for-this-packet" class="section level2">
 <h2>To turn in for this packet:</h2>

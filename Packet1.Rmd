@@ -130,9 +130,14 @@ ggplot(data = county_alt) +
 
 ## Part 3: Learn the basics of R Markdown
 
-In RStudio, install the R Markdown package: `install.packages("rmarkdown")` You may wish to read through the tutorial at <https://www.dataquest.io/blog/r-markdown-guide-cheatsheet/>, but we'll be doing things a little bit differently. 
+In RStudio, install the R Markdown package: `install.packages("rmarkdown")` You may wish to read through the tutorial at <https://www.dataquest.io/blog/r-markdown-guide-cheatsheet/>, but we'll be doing things a little bit differently, as we want to produce .pdf documents. 
 
-Next, in RStudio, click on File > New File > R Markdown. In the popup that appears, enter Packet 1 as the title, your name as the author, and choose PDF for the output type. Then click OK. What will appear is a template that shows off some of the features of R Markdown. Click the **Knit** button too create a PDF from this template. Notice how the R Markdown commands create output in the PDF file.
+1. Install `rmarkdown` with `install.packages("rmarkdown")`. This may already be installed, but there's no harm in running the command if it is installed.
+2. You don't need to `library(rmarkdown)`, that will happen automatically when we compile ("knit" in R lingo) the file.
+3. Install the `tinytex` package with `install.packages("tinytex")`.
+4. `library(tinytex)`. This package creates a function to install a minimal LaTeX setup that R can interact with, which you'll run in the next step.
+5. Now, run `install_tinytex()`. This will finish the installation of the LaTeX setup.
+6. Finally, let's test everything out: in RStudio, click on File > New File > R Markdown. In the popup that appears, enter Packet 1 as the title, your name as the author, and choose PDF for the output type. Then click OK. What will appear is a template that shows off some of the features of R Markdown. Click the **Knit** button too create a PDF from this template. Notice how the R Markdown commands create output in the PDF file.
 
 ## To turn in for this packet:
 
